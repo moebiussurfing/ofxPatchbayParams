@@ -63,8 +63,8 @@ patchbay.disconnectAll();
 
 // connect
 patchbay.link(0, 3);
-patchbay.link(1, 2);
-patchbay.link(2, 1);
+patchbay.link(1, 1);
+patchbay.link(2, 2);
 patchbay.link(3, 0);
 ```
   
