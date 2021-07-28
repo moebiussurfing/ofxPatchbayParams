@@ -14,27 +14,24 @@ public:
     void keyPressed(int key);
 
     ofxPatchbay patchbay;
+	
+	// controllers
+	ofParameter<float>pController0{ "pController0", 0, 0, 1 };
+	ofParameter<float>pController1{ "pController1", 0, 0, 1 };
+	ofParameter<float>pController2{ "pController2", 0, 0, 1 };
+	ofParameter<float>pController3{ "pController3", 0, 0, 1 };
 
-	// NOTE: input/output naming could be wrong...
-	// We can use controller > target instead.
-
-	// input params (controllers)
-	ofParameter<float>pi1{ "pi1", 0, 0, 1 };
-	ofParameter<float>pi2{ "pi2", 0, 0, 1 };
-	ofParameter<float>pi3{ "pi3", 0, 0, 1 };
-	ofParameter<float>pi4{ "pi4", 0, 0, 1 };
-
-	// output params (targets)
-	ofParameter<float>po1{ "po1", 0, 0, 1 };
-	ofParameter<float>po2{ "po2", 0, 0, 1 };
-	ofParameter<float>po3{ "po3", 0, 0, 1 };
-	ofParameter<float>po4{ "po4", 0, 0, 1 };
+	// targets
+	ofParameter<float>pTarget0{ "pTarget0", 0, 0, 1 };
+	ofParameter<float>pTarget1{ "pTarget1", 0, 0, 1 };
+	ofParameter<float>pTarget2{ "pTarget2", 0, 0, 1 };
+	ofParameter<float>pTarget3{ "pTarget3", 0, 0, 1 };
 
 	// gui
-	ofxPanel guiInput;
-	ofxPanel guiOutput;
-	ofParameterGroup gInput{ "gInput" };
-	ofParameterGroup gOutput{ "gOutput" };
+	ofxPanel guiControllers;
+	ofxPanel guiTargets;
+	ofParameterGroup gControllers{ "gControllers" };
+	ofParameterGroup gTargets{ "gTargets" };
 	
 	// scene
 	ofRectangle rect;

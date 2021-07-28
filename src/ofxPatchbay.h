@@ -20,10 +20,10 @@
 using namespace std;
 
 class ofxPatchbay {
+
 public:
+
     ofxPatchbay(bool bparam = true);
-    //ofxPatchbay(bool kb = false, bool mouse = false, bool midi = false, bool audio = false, bool bparam = true);
-    //ofxPatchbay(bool kb = true, bool mouse = true, bool midi = true, bool audio = true, bool bparam = true);
     
 	void update();
     void registerAllInputs();
@@ -50,17 +50,21 @@ public:
     void print2f();
 
 	// ofParameters
+	//--------------------------------------------------------------
 	void addParameter(ofParameter<float>& param) {
 		input.addParameter(param);
 	}
+	//--------------------------------------------------------------
 	void setupParameters() {
 		input.registerParams(this);
 	}
+	//--------------------------------------------------------------
 	void clearParameters() {
 		input.unregisterParams(this);
 	}
 
 protected:
+
     map<string, set<string>> connections1f;
     map<string, set<string>> connections2f;
 
@@ -71,6 +75,40 @@ protected:
     map<string, function<ofVec2f ()>> controller2f;
     
     ofxPatchbayInput input;
+
+	//--
+
+	vector<ofParameter<float>> paramsControllers;
+	vector<ofParameter<float>> paramsTargets;
+
+public:
+
+	//--------------------------------------------------------------
+	void addController(ofParameter<float>& param) {
+		paramsControllers.push_back(param);
+		addParameter(paramsControllers.back());
+	}
+
+	//--------------------------------------------------------------
+	void addTarget(ofParameter<float>& param) {
+		paramsTargets.push_back(param);
+
+		// define and name outputs
+		registerControllable1f(param.getName(), [&](float value) {
+			param.set(value);
+		});
+	}
+
+	//--------------------------------------------------------------
+	void link(int indexControlller, int indexTarget) {
+		if (indexControlller > paramsControllers.size() - 1 || indexTarget > paramsTargets.size() - 1)
+		{
+			ofLogError(__FUNCTION__) << "Out of range index for controller or target";
+			return;
+		}
+
+		connect1f(paramsControllers[indexControlller].getName(), paramsTargets[indexTarget].getName());
+	}
 };
 
 #endif /* ofxPatchbay_h */

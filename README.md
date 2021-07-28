@@ -13,52 +13,58 @@ ofApp.h
 ```.c++
 ofxPatchbay patchbay;
 
-// params controllers
-ofParameter<float>pi1{ "pi1", 0, 0, 1 };
-ofParameter<float>pi2{ "pi2", 0, 0, 1 };
-ofParameter<float>pi3{ "pi3", 0, 0, 1 };
-ofParameter<float>pi4{ "pi4", 0, 0, 1 };
+// controllers
+ofParameter<float>pController0{ "pController0", 0, 0, 1 };
+ofParameter<float>pController1{ "pController1", 0, 0, 1 };
+ofParameter<float>pController2{ "pController2", 0, 0, 1 };
+ofParameter<float>pController3{ "pController3", 0, 0, 1 };
 
-// params targets
-ofParameter<float>po1{ "po1", 0, 0, 1 };
-ofParameter<float>po2{ "po2", 0, 0, 1 };
-ofParameter<float>po3{ "po3", 0, 0, 1 };
-ofParameter<float>po4{ "po4", 0, 0, 1 };
+// targets
+ofParameter<float>pTarget0{ "pTarget0", 0, 0, 1 };
+ofParameter<float>pTarget1{ "pTarget1", 0, 0, 1 };
+ofParameter<float>pTarget2{ "pTarget2", 0, 0, 1 };
+ofParameter<float>pTarget3{ "pTarget3", 0, 0, 1 };
 ```
 
 ofApp.cpp
 ```.c++
-// define controllers
-patchbay.addParameter(pi1);
-patchbay.addParameter(pi2);
-patchbay.addParameter(pi3);
-patchbay.addParameter(pi4);
-patchbay.setupParameters();
+// controllers
+gControllers.add(pController0);
+gControllers.add(pController1);
+gControllers.add(pController2);
+gControllers.add(pController3);
 
-// define and name targets
-patchbay.registerControllable1f("po1", [&](float value) {
-  po1.set(value);
-});
-patchbay.registerControllable1f("po2", [&](float value) {
-  po2.set(value);
-});
-patchbay.registerControllable1f("po3", [&](float value) {
-  po3.set(value);
-});
-patchbay.registerControllable1f("po4", [&](float value) {
-  po4.set(value);
-});
+// targets
+gTargets.add(pTarget0);
+gTargets.add(pTarget1);
+gTargets.add(pTarget2);
+gTargets.add(pTarget3);
+
+// define controllers
+patchbay.addController(pController0);
+patchbay.addController(pController1);
+patchbay.addController(pController2);
+patchbay.addController(pController3);
+
+// define targets
+patchbay.addTarget(pTarget0);
+patchbay.addTarget(pTarget1);
+patchbay.addTarget(pTarget2);
+patchbay.addTarget(pTarget3);
+
+// initialize
+patchbay.setupParameters();
 
 //-
 
 // disconnect
-patchbay.disconnectAll();
+patchbay.disconnectAll();	
 
 // connect
-patchbay.connect1f("param-1", "po2");
-patchbay.connect1f("param-2", "po1");
-patchbay.connect1f("param-3", "po4");
-patchbay.connect1f("param-4", "po3");
+patchbay.link(0, 3);
+patchbay.link(1, 2);
+patchbay.link(2, 1);
+patchbay.link(3, 0);
 ```
   
 ![image](docs/Capture.PNG?raw=true "image")
