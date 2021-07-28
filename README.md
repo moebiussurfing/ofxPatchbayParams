@@ -7,29 +7,30 @@ Thanks @**e7mac**!
 
 ofApp.h
 ```.c++
-   ofxPatchbay patchbay;
+ofxPatchbay patchbay;
 
-	// params controllers
-	ofParameter<float>pi1{ "pi1", 0, 0, 1 };
-	ofParameter<float>pi2{ "pi2", 0, 0, 1 };
-	ofParameter<float>pi3{ "pi3", 0, 0, 1 };
-	ofParameter<float>pi4{ "pi4", 0, 0, 1 };
+// params controllers
+ofParameter<float>pi1{ "pi1", 0, 0, 1 };
+ofParameter<float>pi2{ "pi2", 0, 0, 1 };
+ofParameter<float>pi3{ "pi3", 0, 0, 1 };
+ofParameter<float>pi4{ "pi4", 0, 0, 1 };
 
-	// params targets
-	ofParameter<float>po1{ "po1", 0, 0, 1 };
-	ofParameter<float>po2{ "po2", 0, 0, 1 };
-	ofParameter<float>po3{ "po3", 0, 0, 1 };
-	ofParameter<float>po4{ "po4", 0, 0, 1 };
+// params targets
+ofParameter<float>po1{ "po1", 0, 0, 1 };
+ofParameter<float>po2{ "po2", 0, 0, 1 };
+ofParameter<float>po3{ "po3", 0, 0, 1 };
+ofParameter<float>po4{ "po4", 0, 0, 1 };
 ```
 
 ofApp.cpp
 ```.c++
- 	// define inputs
-	patchbay.addParameter(pi1);
-	patchbay.addParameter(pi2);
-	patchbay.addParameter(pi3);
-	patchbay.addParameter(pi4);
-	patchbay.setupParameters();
+// define inputs
+patchbay.addParameter(pi1);
+patchbay.addParameter(pi2);
+patchbay.addParameter(pi3);
+patchbay.addParameter(pi4);
+patchbay.setupParameters();
+
 // define and name outputs
 patchbay.registerControllable1f("po1", [&](float value) {
   po1.set(value);
