@@ -3,6 +3,7 @@
   This is modified version by **moebiusSurfing**.  
 	* Removed all input controllers (keys, mouse and MIDI).  
 	* Added new ofParameter<float> controller.  
+![image](docs/readme_images/Capture.PNG?raw=true "image")
 
 ---------------------------------
 
