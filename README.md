@@ -24,14 +24,14 @@ ofParameter<float>po4{ "po4", 0, 0, 1 };
 
 ofApp.cpp
 ```.c++
-// define inputs
+// define controllers
 patchbay.addParameter(pi1);
 patchbay.addParameter(pi2);
 patchbay.addParameter(pi3);
 patchbay.addParameter(pi4);
 patchbay.setupParameters();
 
-// define and name outputs
+// define and name targets
 patchbay.registerControllable1f("po1", [&](float value) {
   po1.set(value);
 });
