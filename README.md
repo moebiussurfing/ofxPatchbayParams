@@ -3,7 +3,7 @@
 This is modified version by **moebiusSurfing** from https://github.com/e7mac/ofxPatchbay.  
 
 * Removed all input controllers (keys, mouse and MIDI).  
-* Added new ofParameter<float> controller.  
+* Added new ```ofParameter<float>``` controller.  
 
 Thanks @**e7mac**!  
 
