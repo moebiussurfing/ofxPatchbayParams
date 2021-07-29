@@ -4,7 +4,7 @@ This is modified version by **moebiusSurfing** from https://github.com/e7mac/ofx
 
 * Removed all input controllers (keys, mouse and MIDI).  
 * Added new ```ofParameter<float>``` controller.  
-* A new a simplified API.
+* A simplified API.
 
 Thanks @**e7mac**!  
 
