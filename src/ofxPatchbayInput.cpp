@@ -13,15 +13,28 @@
 ///*
 void ofxPatchbayInput::registerParams(ofxPatchbay* patchbay)
 {
-	for (int i = 0; i < parameters.size(); ++i)
+	for (int i = 0; i < parameters_Float.size(); ++i)
 	{
-		auto& p = parameters[i];
+		auto& p = parameters_Float[i];
 		string name = p.getName();
 
 		patchbay->registerController1f(name,
 			[&, i] {
-				return parameters[i].get();
+				return parameters_Float[i].get();
 			});
+	}
+
+	for (int i = 0; i < parameters_Bool.size(); ++i)
+	{
+		auto& p = parameters_Bool[i];
+		string name = p.getName();
+
+		/*
+		patchbay->registerControllableB(name,
+			[&, i] {
+				return parameters_Bool[i].get();
+			});
+		*/
 	}
 }
 //*/

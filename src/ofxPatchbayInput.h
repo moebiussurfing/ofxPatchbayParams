@@ -35,14 +35,26 @@ protected:
 	// float
 	///*
 public:
-
-	void addParameter(ofParameter<float>& p)
+	void addParameter(ofAbstractParameter& p)
 	{
-		parameters.push_back(p);
+		if (p.type() == typeid(ofParameter<float>).name()) addParameter_Float(p.cast<float>());
+		else if (p.type() == typeid(ofParameter<bool>).name()) addParameter_Bool(p.cast<bool>());
 	}
 
 protected:
 
-	vector<ofParameter<float>> parameters;
+	void addParameter_Float(ofParameter<float>& p)
+	{
+		parameters_Float.push_back(p);
+	}
+	void addParameter_Bool(ofParameter<bool>& p)
+	{
+		parameters_Bool.push_back(p);
+	}
+
+protected:
+
+	vector<ofParameter<float>> parameters_Float;
+	vector<ofParameter<bool>> parameters_Bool;
 	//*/
 };

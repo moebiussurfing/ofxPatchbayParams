@@ -12,10 +12,18 @@ void ofxPatchbay::registerControllable1f(string name, function<void(float)> func
 {
 	controllable1f[name] = func;
 }
-
 void ofxPatchbay::registerController1f(string name, function<float()> func)
 {
 	controller1f[name] = func;
+}
+
+void ofxPatchbay::registerControllableB(string name, function<void(bool)> func)
+{
+	controllableB[name] = func;
+}
+void ofxPatchbay::registerControllerB(string name, function<bool()> func)
+{
+	controllerB[name] = func;
 }
 
 void ofxPatchbay::setupRegister() {

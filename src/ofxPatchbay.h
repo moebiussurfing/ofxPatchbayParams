@@ -33,6 +33,11 @@ public:
 	void registerControllable1f(string, function<void(float)>);
 	void registerController1f(string, function<float()>);
 
+	void registerControllableB(string, function<void(bool)>);
+	void registerControllerB(string, function<bool()>);
+
+	//--
+
 	void print();
 	void printConnections();
 	void print1f();
@@ -47,6 +52,9 @@ protected:
 	map<string, function<void(float)>> controllable1f;
 	map<string, function<float()>> controller1f;
 
+	map<string, function<void(bool)>> controllableB;
+	map<string, function<bool()>> controllerB;
+
 	ofxPatchbayInput input;
 
 	//--
@@ -55,8 +63,14 @@ protected:
 	///*
 protected:
 
-	vector<ofParameter<float>> paramsControllers;
-	vector<ofParameter<float>> paramsTargets;
+	vector<ofAbstractParameter> paramsControllers;
+	vector<ofAbstractParameter> paramsTargets;
+
+	vector<ofParameter<float>> paramsControllers_Float;
+	vector<ofParameter<float>> paramsTargets_Float;
+
+	vector<ofParameter<bool>> paramsControllers_Bool;
+	vector<ofParameter<bool>> paramsTargets_Bool;
 
 public:
 
@@ -64,26 +78,44 @@ public:
 	void addParameter(ofParameter<float>& param) {
 		input.addParameter(param);
 	}
+	//--------------------------------------------------------------
+	void addParameter(ofParameter<bool>& param) {
+		input.addParameter(param);
+	}
 
 	//--------------------------------------------------------------
 	void addController(ofParameter<float>& p)
 	{
-		paramsControllers.push_back(p);
-
+		paramsControllers_Float.push_back(p);
+		addParameter(p);
+	}
+	//--------------------------------------------------------------
+	void addController(ofParameter<bool>& p)
+	{
+		paramsControllers_Bool.push_back(p);
 		addParameter(p);
 	}
 
 	//--------------------------------------------------------------
 	void addTarget(ofParameter<float>& p)
 	{
-		paramsTargets.push_back(p);
+		paramsTargets_Float.push_back(p);
 
 		// define and name outputs
 		registerControllable1f(p.getName(), [&](float value) {
 			p.set(value);
 			});
 	}
-	//*/
+	//--------------------------------------------------------------
+	void addTarget(ofParameter<bool>& p)
+	{
+		paramsTargets_Bool.push_back(p);
+
+		// define and name outputs
+		registerControllableB(p.getName(), [&](bool value) {
+			p.set(value);
+			});
+	}
 
 	//--
 
@@ -91,8 +123,8 @@ public:
 	/*
 protected:
 
-	vector<ofAbstractParameter> paramsControllers;
-	vector<ofAbstractParameter> paramsTargets;
+	vector<ofAbstractParameter> paramsControllers_Float;
+	vector<ofAbstractParameter> paramsTargets_Float;
 
 public:
 
@@ -104,7 +136,7 @@ public:
 	//--------------------------------------------------------------
 	void addController(ofAbstractParameter& p)
 	{
-		paramsControllers.push_back(p);
+		paramsControllers_Float.push_back(p);
 
 		addParameter(p);
 	}
@@ -112,7 +144,7 @@ public:
 	//--------------------------------------------------------------
 	void addTarget(ofAbstractParameter& p)
 	{
-		paramsTargets.push_back(p);
+		paramsTargets_Float.push_back(p);
 
 		// define and name outputs
 		if (p.type() == typeid(ofParameter<float>).name())
@@ -132,23 +164,23 @@ public:
 
 	//--------------------------------------------------------------
 	void link(int iCont, int iTar) {
-		if (iCont > paramsControllers.size() - 1 || iTar > paramsTargets.size() - 1)
+		if (iCont > paramsControllers_Float.size() - 1 || iTar > paramsTargets_Float.size() - 1)
 		{
 			ofLogError(__FUNCTION__) << "Out of range index for controller or target";
 			return;
 		}
 
-		connect1f(paramsControllers[iCont].getName(), paramsTargets[iTar].getName());
+		connect1f(paramsControllers_Float[iCont].getName(), paramsTargets_Float[iTar].getName());
 	}
 
 	//--------------------------------------------------------------
 	void unlink(int iCont, int iTar) {
-		if (iCont > paramsControllers.size() - 1 || iTar > paramsTargets.size() - 1)
+		if (iCont > paramsControllers_Float.size() - 1 || iTar > paramsTargets_Float.size() - 1)
 		{
 			ofLogError(__FUNCTION__) << "Out of range index for controller or target";
 			return;
 		}
 
-		disconnect1f(paramsControllers[iCont].getName(), paramsTargets[iTar].getName());
+		disconnect1f(paramsControllers_Float[iCont].getName(), paramsTargets_Float[iTar].getName());
 	}
 };
