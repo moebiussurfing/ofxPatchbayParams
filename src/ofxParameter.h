@@ -11,8 +11,11 @@ public:
 	ofxParameterFloats();
 	~ofxParameterFloats();
 
-	vector<ofAbstractParameter> parameters;
-	void addParameter(ofAbstractParameter& param);
+	//vector<ofAbstractParameter> parameters;
+	//void addParameter(ofAbstractParameter& param);
+
+	vector<ofParameter<float>> parameters;
+	void addParameter(ofParameter<float>& param);
 
 	ofParameterGroup params{ "Params" };
 
@@ -24,6 +27,5 @@ public:
 		return parameters.size();
 	}
 };
-
 
 #endif /* ofxParameter_h */

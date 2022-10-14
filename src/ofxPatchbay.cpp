@@ -28,6 +28,8 @@ void ofxPatchbay::registerController1f(string name, function<float ()> func) {
     controller1f[name] = func;
 }
 
+//--
+
 void ofxPatchbay::connect1f(string controller, string controllable) {
     if (controller1f.find(controller) == controller1f.end()) {
         ofLog(OF_LOG_WARNING, "Controller: " + controller + " not registered as yet");
@@ -42,6 +44,8 @@ void ofxPatchbay::disconnect1f(string controller, string controllable) {
     connections1f[controller].erase(controllable);
 }
 
+//--
+
 void ofxPatchbay::disconnectAll() {
     disconnectAll1f();
 }
@@ -53,7 +57,7 @@ void ofxPatchbay::disconnectAll1f() {
 //--
 
 void ofxPatchbay::update() {
-    
+    ///*
     for(auto& connection : connections1f)
     {
         auto controller = controller1f[connection.first];
@@ -78,9 +82,12 @@ void ofxPatchbay::update() {
             }
         }
     }
+   //*/
 }
 
 //--
+
+// Print
 
 void ofxPatchbay::print() {
     print1f();

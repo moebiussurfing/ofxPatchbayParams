@@ -19,20 +19,21 @@ using namespace std;
 
 class ofxPatchbay;
 
-class ofxPatchbayInput 
+class ofxPatchbayInput
 {
 public:
 
-    void registerParams(ofxPatchbay *patchbay);
+	void registerParams(ofxPatchbay* patchbay);
 
-	void addParameter(ofAbstractParameter& param)
+	//void addParameter(ofAbstractParameter& param)
+	void addParameter(ofParameter<float>& param)
 	{
 		parameters.addParameter(param);
 	}
 
 protected:
 
-    ofxParameterFloats parameters;
+	ofxParameterFloats parameters;
 };
 
 #endif /* ofxPatchbayInput_h */

@@ -36,11 +36,16 @@ public:
 	void printConnections();
 	void print1f();
 
+	//--
+
 	// ofParameters
+	
 	//--------------------------------------------------------------
-	void addParameter(ofAbstractParameter& param) {
+	void addParameter(ofParameter<float>& param) {
+	//void addParameter(ofAbstractParameter& param) {
 		input.addParameter(param);
 	}
+
 	//--------------------------------------------------------------
 	void setupParameters() {
 		input.registerParams(this);
@@ -58,26 +63,35 @@ protected:
 
 	//--
 
-	vector<ofAbstractParameter> paramsControllers;
-	vector<ofAbstractParameter> paramsTargets;
+	//vector<ofAbstractParameter> paramsControllers;
+	//vector<ofAbstractParameter> paramsTargets;
+
+	vector<ofParameter<float>> paramsControllers;
+	vector<ofParameter<float>> paramsTargets;
+
+	//--
 
 public:
 
 	//--------------------------------------------------------------
-	void addController(ofAbstractParameter& param)
+	void addController(ofParameter<float>& p)
+	//void addController(ofAbstractParameter& p)
 	{
-		paramsControllers.push_back(param);
+		paramsControllers.push_back(p);
 
-		addParameter(paramsControllers.back());
+		addParameter(p);
+		//addParameter(paramsControllers.back());
 	}
 
 	//--------------------------------------------------------------
-	void addTarget(ofAbstractParameter& p)
+	//void addTarget(ofAbstractParameteofParameter<float>r& p)
+	void addTarget(ofParameter<float>& p)
 	{
 		paramsTargets.push_back(p);
 
 		// define and name outputs
 
+		/*
 		if (p.type() == typeid(ofParameter<float>).name())
 		{
 			ofParameter<float> pm = p.cast<float>();
@@ -86,7 +100,14 @@ public:
 				pm.set(value);
 				});
 		}
+		*/
+
+		registerControllable1f(p.getName(), [&](float value) {
+			p.set(value);
+			});
 	}
+
+	//--
 
 	//--------------------------------------------------------------
 	void link(int indexControlller, int indexTarget) {
