@@ -18,8 +18,8 @@ void ofxPatchbayInput::registerParams(ofxPatchbay* patchbay)
 		auto& p = parameters[i];
 		string name = p.getName();
 
-		patchbay->registerController1f(name, [&, i]
-			{
+		patchbay->registerController1f(name,
+			[&, i] {
 				return parameters[i].get();
 			});
 	}
@@ -30,7 +30,7 @@ void ofxPatchbayInput::registerParams(ofxPatchbay* patchbay)
 // abstract
 void ofxPatchbayInput::registerParams(ofxPatchbay* patchbay)
 {
-	for (int i = 0; i < parameters.size(); ++i) 
+	for (int i = 0; i < parameters.size(); ++i)
 	{
 		auto& p = parameters[i];
 		string name = p.getName();

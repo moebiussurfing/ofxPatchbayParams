@@ -42,7 +42,7 @@ public:
 protected:
 
 	map<string, set<string>> connections1f;
-	map<string, set<string>> connections2f;
+	//map<string, set<string>> connections2f;
 
 	map<string, function<void(float)>> controllable1f;
 	map<string, function<float()>> controller1f;

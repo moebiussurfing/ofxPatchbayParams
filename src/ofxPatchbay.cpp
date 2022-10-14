@@ -121,12 +121,12 @@ void ofxPatchbay::printConnections() {
 		}
 		cout << "]" << endl;
 	}
-	cout << "\nConnection 2fs:" << endl;
-	for (auto& item : connections2f) {
-		cout << item.first << ": [";
-		for (auto& to : item.second) {
-			cout << to << ", ";
-		}
-		cout << "]" << endl;
-	}
+	//cout << "\nConnection 2fs:" << endl;
+	//for (auto& item : connections2f) {
+	//	cout << item.first << ": [";
+	//	for (auto& to : item.second) {
+	//		cout << to << ", ";
+	//	}
+	//	cout << "]" << endl;
+	//}
 }
