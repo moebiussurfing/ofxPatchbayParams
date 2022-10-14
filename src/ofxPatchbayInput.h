@@ -15,8 +15,27 @@ class ofxPatchbayInput
 public:
 
 	void registerParams(ofxPatchbay* patchbay);
+	 
+	//--
 
-	//void addParameter(ofAbstractParameter& p)
+	// abstract
+	/*
+	void addParameter(ofAbstractParameter& p)
+	{
+		parameters.push_back(p);
+	}
+
+protected:
+
+	vector<ofAbstractParameter> parameters;
+	*/
+
+	//--
+
+	// float
+	///*
+public:
+
 	void addParameter(ofParameter<float>& p)
 	{
 		parameters.push_back(p);
@@ -25,4 +44,5 @@ public:
 protected:
 
 	vector<ofParameter<float>> parameters;
+	//*/
 };

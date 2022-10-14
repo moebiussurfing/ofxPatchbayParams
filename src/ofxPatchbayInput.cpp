@@ -7,9 +7,12 @@
 #include "ofxPatchbayInput.h"
 #include "ofxPatchbay.h"
 
-void ofxPatchbayInput::registerParams(ofxPatchbay *patchbay)
-{
+//--
 
+// float 
+///*
+void ofxPatchbayInput::registerParams(ofxPatchbay* patchbay)
+{
 	for (int i = 0; i < parameters.size(); ++i)
 	{
 		auto& p = parameters[i];
@@ -20,30 +23,17 @@ void ofxPatchbayInput::registerParams(ofxPatchbay *patchbay)
 				return parameters[i].get();
 			});
 	}
+}
+//*/
 
-
-
-	///*
-	//for (int i = 0; i < parameters.getSize(); ++i) 
-	//{
-	//	auto& p = parameters.parameters[i];
-	//	string name = p.getName();
-	//	
-	//	patchbay->registerController1f(name, [&, i]
-	//		{
-	//		return parameters.parameters[i].get();
-	//		});
-	//}
-	//*/
-
-
-	/*
-	for (int i = 0; i < parameters.getSize(); ++i) 
+/*
+// abstract
+void ofxPatchbayInput::registerParams(ofxPatchbay* patchbay)
+{
+	for (int i = 0; i < parameters.size(); ++i) 
 	{
-		auto& p = parameters.parameters[i];
-
+		auto& p = parameters[i];
 		string name = p.getName();
-		//string name = "param-" + ofToString(i + 1);
 
 		if (p.type() == typeid(ofParameter<float>).name())
 		{
@@ -54,10 +44,6 @@ void ofxPatchbayInput::registerParams(ofxPatchbay *patchbay)
 				return pm.get();
 				});
 		}
-
-		//patchbay->registerController1f(name, [&, i] {
-		//	return parameters.parameters[i].get();
-		//});
 	}
-	*/
 }
+*/
