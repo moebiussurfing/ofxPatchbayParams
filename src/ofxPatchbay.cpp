@@ -3,20 +3,8 @@
 //  mondrian
 //
 //  Created by Mayank Sanganeria on 2/29/20.
-//
-//  This is modified version by moebiusSurfing
-//	* removed all input controllers
-//	* added new ofParameter>float> controller
 
 #include "ofxPatchbay.h"
-
-//--
-
-ofxPatchbay::ofxPatchbay() {
-}
-
-ofxPatchbay::~ofxPatchbay() {
-}
 
 //--
 
@@ -92,7 +80,6 @@ void ofxPatchbay::update() {
 void ofxPatchbay::print() {
     print1f();
 }
-
 void ofxPatchbay::print1f() {
     cout<<"\nControllable 1fs:"<<endl;
     for (auto& item : controllable1f) {
@@ -111,7 +98,6 @@ void ofxPatchbay::print1f() {
         cout<<"]"<<endl;
     }
 }
-
 void ofxPatchbay::printConnections() {
     cout<<"\nConnection 1fs:"<<endl;
     for (auto& item : connections1f) {

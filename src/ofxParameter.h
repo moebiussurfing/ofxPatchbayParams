@@ -8,8 +8,8 @@ class ofxParameterFloats
 {
 public:
 
-	ofxParameterFloats();
-	~ofxParameterFloats();
+	ofxParameterFloats(){};
+	~ofxParameterFloats(){};
 
 	//vector<ofAbstractParameter> parameters;
 	//void addParameter(ofAbstractParameter& param);
@@ -18,10 +18,6 @@ public:
 	void addParameter(ofParameter<float>& param);
 
 	ofParameterGroup params{ "Params" };
-
-	/*
-	void Changed_params(ofAbstractParameter &e);
-	*/
 
 	int getSize() {
 		return parameters.size();

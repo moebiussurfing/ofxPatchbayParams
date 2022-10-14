@@ -7,15 +7,6 @@
 #include "ofxPatchbayInput.h"
 #include "ofxPatchbay.h"
 
-/*
-void ofxPatchbayInput::registerInputs(ofxPatchbay *patchbay, bool bparam) {
-
-	//if (bparam) {
-	//	registerParam(patchbay);
-	//}
-}
-*/
-
 // ofParameters
 void ofxPatchbayInput::registerParams(ofxPatchbay *patchbay)
 {
@@ -24,7 +15,6 @@ void ofxPatchbayInput::registerParams(ofxPatchbay *patchbay)
 	{
 		auto& p = parameters.parameters[i];
 		string name = p.getName();
-		//string name = "param-" + ofToString(i + 1);
 		
 		patchbay->registerController1f(name, [&, i]
 			{

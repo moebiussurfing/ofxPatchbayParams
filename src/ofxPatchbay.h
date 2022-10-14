@@ -18,8 +18,8 @@ class ofxPatchbay {
 
 public:
 
-	ofxPatchbay();
-	~ofxPatchbay();
+	ofxPatchbay(){};
+	~ofxPatchbay(){};
 
 	void update();
 
@@ -80,7 +80,6 @@ public:
 		paramsControllers.push_back(p);
 
 		addParameter(p);
-		//addParameter(paramsControllers.back());
 	}
 
 	//--------------------------------------------------------------
