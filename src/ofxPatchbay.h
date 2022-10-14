@@ -21,7 +21,7 @@ public:
 	ofxPatchbay() {};
 	~ofxPatchbay() {};
 
-	void setup();
+	void setupRegister();
 	void update();
 
 	void connect1f(string controller, string controllable);

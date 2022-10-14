@@ -18,7 +18,7 @@ void ofxPatchbay::registerController1f(string name, function<float()> func)
 	controller1f[name] = func;
 }
 
-void ofxPatchbay::setup() {
+void ofxPatchbay::setupRegister() {
 	input.registerParams(this);
 }
 
