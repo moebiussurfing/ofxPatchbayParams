@@ -22,7 +22,7 @@ public:
 		parameters.push_back(p);
 	}
 
-//protected:
+protected:
 
 	vector<ofParameter<float>> parameters;
 };

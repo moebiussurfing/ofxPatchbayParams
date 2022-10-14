@@ -107,25 +107,27 @@ public:
 
 	//--
 
+	// Links
+
 	//--------------------------------------------------------------
-	void link(int indexControlller, int indexTarget) {
-		if (indexControlller > paramsControllers.size() - 1 || indexTarget > paramsTargets.size() - 1)
+	void link(int ic, int it) {
+		if (ic > paramsControllers.size() - 1 || it > paramsTargets.size() - 1)
 		{
 			ofLogError(__FUNCTION__) << "Out of range index for controller or target";
 			return;
 		}
 
-		connect1f(paramsControllers[indexControlller].getName(), paramsTargets[indexTarget].getName());
+		connect1f(paramsControllers[ic].getName(), paramsTargets[it].getName());
 	}
 
 	//--------------------------------------------------------------
-	void unlink(int indexControlller, int indexTarget) {
-		if (indexControlller > paramsControllers.size() - 1 || indexTarget > paramsTargets.size() - 1)
+	void unlink(int ic, int it) {
+		if (ic > paramsControllers.size() - 1 || it > paramsTargets.size() - 1)
 		{
 			ofLogError(__FUNCTION__) << "Out of range index for controller or target";
 			return;
 		}
 
-		disconnect1f(paramsControllers[indexControlller].getName(), paramsTargets[indexTarget].getName());
+		disconnect1f(paramsControllers[ic].getName(), paramsTargets[it].getName());
 	}
 };
