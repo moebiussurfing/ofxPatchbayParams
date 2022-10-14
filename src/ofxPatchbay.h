@@ -3,10 +3,23 @@
 //  mondrian
 //
 //  Created by Mayank Sanganeria on 2/29/20.
-//
-//  This is modified version by moebiusSurfing
-//	* removed all input controllers
-//	* adde new ofParameter>float> controller
+//	This is modified version by moebiusSurfing.
+//	removed all input controllers (key/mouse/midi).
+//	adding new ofParameter controllers.
+
+
+/*
+
+	TODO
+
+	think on main vector to stroe different types.
+	abstractParams? map like @daandelange nodes?
+
+*/
+
+
+//----
+
 
 #pragma once
 
@@ -46,12 +59,13 @@ public:
 
 protected:
 
-	map<string, set<string>> connections1f;
 	//map<string, set<string>> connections2f;
 
+	map<string, set<string>> connections1f;
 	map<string, function<void(float)>> controllable1f;
 	map<string, function<float()>> controller1f;
 
+	map<string, set<string>> connectionsB;
 	map<string, function<void(bool)>> controllableB;
 	map<string, function<bool()>> controllerB;
 

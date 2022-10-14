@@ -26,6 +26,8 @@ void ofxPatchbay::registerControllerB(string name, function<bool()> func)
 	controllerB[name] = func;
 }
 
+//--
+
 void ofxPatchbay::setupRegister() {
 	input.registerParams(this);
 }

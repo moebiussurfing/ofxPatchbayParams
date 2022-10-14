@@ -29,12 +29,10 @@ void ofxPatchbayInput::registerParams(ofxPatchbay* patchbay)
 		auto& p = parameters_Bool[i];
 		string name = p.getName();
 
-		/*
-		patchbay->registerControllableB(name,
+		patchbay->registerControllerB(name,
 			[&, i] {
 				return parameters_Bool[i].get();
 			});
-		*/
 	}
 }
 //*/
