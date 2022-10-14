@@ -8,7 +8,7 @@ ofxParameterFloats::~ofxParameterFloats() {
 	//ofRemoveListener(params.parameterChangedE(), this, &ofxParameterFloats::Changed_params); // exit()
 }
 
-void ofxParameterFloats::addParameter(ofParameter<float>& param) {
+void ofxParameterFloats::addParameter(ofAbstractParameter& param) {
 	parameters.push_back(param);
 
 	params.add(param);

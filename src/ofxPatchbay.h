@@ -18,27 +18,27 @@ class ofxPatchbay {
 
 public:
 
-    ofxPatchbay();
-    ~ofxPatchbay();
-    
+	ofxPatchbay();
+	~ofxPatchbay();
+
 	void update();
-    
-    void connect1f(string controller, string controllable);
-    void disconnect1f(string controller, string controllable);
 
-    void disconnectAll();
-    void disconnectAll1f();
+	void connect1f(string controller, string controllable);
+	void disconnect1f(string controller, string controllable);
 
-    void registerControllable1f(string, function<void (float)>);
-    void registerController1f(string, function<float ()>);
+	void disconnectAll();
+	void disconnectAll1f();
 
-    void print();
-    void printConnections();
-    void print1f();
+	void registerControllable1f(string, function<void(float)>);
+	void registerController1f(string, function<float()>);
+
+	void print();
+	void printConnections();
+	void print1f();
 
 	// ofParameters
 	//--------------------------------------------------------------
-	void addParameter(ofParameter<float>& param) {
+	void addParameter(ofAbstractParameter& param) {
 		input.addParameter(param);
 	}
 	//--------------------------------------------------------------
@@ -48,35 +48,44 @@ public:
 
 protected:
 
-    map<string, set<string>> connections1f;
-    map<string, set<string>> connections2f;
+	map<string, set<string>> connections1f;
+	map<string, set<string>> connections2f;
 
-    map<string, function<void (float)>> controllable1f;
-    map<string, function<float ()>> controller1f;
-    
-    ofxPatchbayInput input;
+	map<string, function<void(float)>> controllable1f;
+	map<string, function<float()>> controller1f;
+
+	ofxPatchbayInput input;
 
 	//--
 
-	vector<ofParameter<float>> paramsControllers;
-	vector<ofParameter<float>> paramsTargets;
+	vector<ofAbstractParameter> paramsControllers;
+	vector<ofAbstractParameter> paramsTargets;
 
 public:
 
 	//--------------------------------------------------------------
-	void addController(ofParameter<float>& param) {
+	void addController(ofAbstractParameter& param)
+	{
 		paramsControllers.push_back(param);
+
 		addParameter(paramsControllers.back());
 	}
 
 	//--------------------------------------------------------------
-	void addTarget(ofParameter<float>& param) {
-		paramsTargets.push_back(param);
+	void addTarget(ofAbstractParameter& p)
+	{
+		paramsTargets.push_back(p);
 
 		// define and name outputs
-		registerControllable1f(param.getName(), [&](float value) {
-			param.set(value);
-		});
+
+		if (p.type() == typeid(ofParameter<float>).name())
+		{
+			ofParameter<float> pm = p.cast<float>();
+
+			registerControllable1f(pm.getName(), [&](float value) {
+				pm.set(value);
+				});
+		}
 	}
 
 	//--------------------------------------------------------------

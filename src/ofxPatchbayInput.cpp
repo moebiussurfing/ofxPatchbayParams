@@ -3,10 +3,6 @@
 //  mondrian
 //
 //  Created by Mayank Sanganeria on 2/29/20.
-//
-//  This is modified version by moebiusSurfing
-//	* removed all input controllers
-//	* adde new ofParameter>float> controller
 
 #include "ofxPatchbayInput.h"
 #include "ofxPatchbay.h"
@@ -25,11 +21,23 @@ void ofxPatchbayInput::registerParams(ofxPatchbay *patchbay)
 {
 	for (int i = 0; i < parameters.getSize(); ++i) 
 	{
-		string name = parameters.parameters[i].getName();
+		auto& p = parameters.parameters[i];
+
+		string name = p.getName();
 		//string name = "param-" + ofToString(i + 1);
 
-		patchbay->registerController1f(name, [&, i] {
-			return parameters.parameters[i].get();
-		});
+		if (p.type() == typeid(ofParameter<float>).name())
+		{
+			ofParameter<float> pm = p.cast<float>();
+			ofLogNotice() << " type:float value:" << pm.get();
+
+			patchbay->registerController1f(name, [&, i] {
+				return pm.get();
+				});
+		}
+
+		//patchbay->registerController1f(name, [&, i] {
+		//	return parameters.parameters[i].get();
+		//});
 	}
 }

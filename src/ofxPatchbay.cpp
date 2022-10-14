@@ -6,9 +6,11 @@
 //
 //  This is modified version by moebiusSurfing
 //	* removed all input controllers
-//	* adde new ofParameter>float> controller
+//	* added new ofParameter>float> controller
 
 #include "ofxPatchbay.h"
+
+//--
 
 ofxPatchbay::ofxPatchbay() {
 }

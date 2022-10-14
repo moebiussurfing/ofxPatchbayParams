@@ -4,10 +4,6 @@
 
 #include "ofMain.h"
 
-//  This is modified version by moebiusSurfing
-//	* removed all input controllers
-//	* adde new ofParameter>float> controller
-
 class ofxParameterFloats
 {
 public:
@@ -15,8 +11,8 @@ public:
 	ofxParameterFloats();
 	~ofxParameterFloats();
 
-	vector<ofParameter<float>> parameters;
-	void addParameter(ofParameter<float>& param);
+	vector<ofAbstractParameter> parameters;
+	void addParameter(ofAbstractParameter& param);
 
 	ofParameterGroup params{ "Params" };
 
