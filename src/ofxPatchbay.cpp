@@ -11,8 +11,12 @@
 #include "ofxPatchbay.h"
 
 ofxPatchbay::ofxPatchbay() {
-    //input.registerInputs(this, bparam);
 }
+
+ofxPatchbay::~ofxPatchbay() {
+}
+
+//--
 
 void ofxPatchbay::registerControllable1f(string name, function<void (float)> func) {
     controllable1f[name] = func;
@@ -44,26 +48,37 @@ void ofxPatchbay::disconnectAll1f() {
     connections1f.clear();
 }
 
+//--
 
 void ofxPatchbay::update() {
     
-    for(auto& connection : connections1f) {
+    for(auto& connection : connections1f)
+    {
         auto controller = controller1f[connection.first];
-        if (controller == NULL) {
+
+        if (controller == NULL) 
+        {
             ofLog(OF_LOG_WARNING, "process(): Controller " + connection.first + " not found");
-        } else {
+        } 
+        else 
+        {
             auto value = controller();
-            for (auto& controllableName : connection.second) {
+            for (auto& controllableName : connection.second) 
+            {
                 auto controllable = controllable1f[controllableName];
-                if (controllable == NULL) {
+                if (controllable == NULL) 
+                {
                     ofLog(OF_LOG_WARNING, "process(): Controllable " + controllableName + " not found");
-                } else {
+                } else
+                {
                     controllable(value);
                 }
             }
         }
     }
 }
+
+//--
 
 void ofxPatchbay::print() {
     print1f();

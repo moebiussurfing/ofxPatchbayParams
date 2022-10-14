@@ -8,8 +8,10 @@
 //	* removed all input controllers
 //	* adde new ofParameter>float> controller
 
-class ofxParameterFloats {
+class ofxParameterFloats
+{
 public:
+
 	ofxParameterFloats();
 	~ofxParameterFloats();
 
@@ -17,7 +19,10 @@ public:
 	void addParameter(ofParameter<float>& param);
 
 	ofParameterGroup params{ "Params" };
+
+	/*
 	void Changed_params(ofAbstractParameter &e);
+	*/
 
 	int getSize() {
 		return parameters.size();

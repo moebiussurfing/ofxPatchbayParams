@@ -1,11 +1,11 @@
 #include "ofxParameter.h"
 
 ofxParameterFloats::ofxParameterFloats() {
-	ofAddListener(params.parameterChangedE(), this, &ofxParameterFloats::Changed_params); // setup()
+	//ofAddListener(params.parameterChangedE(), this, &ofxParameterFloats::Changed_params); // setup()
 }
 
 ofxParameterFloats::~ofxParameterFloats() {
-	ofRemoveListener(params.parameterChangedE(), this, &ofxParameterFloats::Changed_params); // exit()
+	//ofRemoveListener(params.parameterChangedE(), this, &ofxParameterFloats::Changed_params); // exit()
 }
 
 void ofxParameterFloats::addParameter(ofParameter<float>& param) {
@@ -14,6 +14,7 @@ void ofxParameterFloats::addParameter(ofParameter<float>& param) {
 	params.add(param);
 }
 
+/*
 void ofxParameterFloats::Changed_params(ofAbstractParameter &e)
 {
 	string name = e.getName();
@@ -23,3 +24,4 @@ void ofxParameterFloats::Changed_params(ofAbstractParameter &e)
 	//{
 	//}
 }
+*/

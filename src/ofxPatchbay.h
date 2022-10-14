@@ -11,44 +11,30 @@
 #ifndef ofxPatchbay_h
 #define ofxPatchbay_h
 
-//#include <iostream>
-//#include <map>
-//#include <set>
-//using namespace std;
-
 #include "ofMain.h"
 #include "ofxPatchbayInput.h"
-
 
 class ofxPatchbay {
 
 public:
 
     ofxPatchbay();
+    ~ofxPatchbay();
     
 	void update();
-    //void registerAllInputs();
     
     void connect1f(string controller, string controllable);
     void disconnect1f(string controller, string controllable);
 
-    //void connect2f(string controller, string controllable);
-    //void disconnect2f(string controller, string controllable);
-
     void disconnectAll();
     void disconnectAll1f();
-    //void disconnectAll2f();
 
     void registerControllable1f(string, function<void (float)>);
     void registerController1f(string, function<float ()>);
 
-    //void registerControllable2f(string, function<void (ofVec2f)>);
-    //void registerController2f(string, function<ofVec2f ()>);
-
     void print();
     void printConnections();
     void print1f();
-    void print2f();
 
 	// ofParameters
 	//--------------------------------------------------------------
@@ -59,10 +45,6 @@ public:
 	void setupParameters() {
 		input.registerParams(this);
 	}
-	//--------------------------------------------------------------
-	void clearParameters() {
-		//input.unregisterParams(this);
-	}
 
 protected:
 
@@ -71,9 +53,6 @@ protected:
 
     map<string, function<void (float)>> controllable1f;
     map<string, function<float ()>> controller1f;
-
-    //map<string, function<void (ofVec2f)>> controllable2f;
-    //map<string, function<ofVec2f ()>> controller2f;
     
     ofxPatchbayInput input;
 
