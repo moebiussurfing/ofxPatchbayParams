@@ -13,7 +13,8 @@
 #include "ofMain.h"
 #include "ofxPatchbayInput.h"
 
-class ofxPatchbay {
+class ofxPatchbay 
+{
 
 public:
 
@@ -37,8 +38,6 @@ public:
 
 	//--
 
-	// ofParameters
-	
 	//--------------------------------------------------------------
 	void addParameter(ofParameter<float>& param) {
 	//void addParameter(ofAbstractParameter& param) {
@@ -46,7 +45,7 @@ public:
 	}
 
 	//--------------------------------------------------------------
-	void setupParameters() {
+	void setup() {
 		input.registerParams(this);
 	}
 
@@ -110,24 +109,24 @@ public:
 	// Links
 
 	//--------------------------------------------------------------
-	void link(int ic, int it) {
-		if (ic > paramsControllers.size() - 1 || it > paramsTargets.size() - 1)
+	void link(int iCont, int iTar) {
+		if (iCont > paramsControllers.size() - 1 || iTar > paramsTargets.size() - 1)
 		{
 			ofLogError(__FUNCTION__) << "Out of range index for controller or target";
 			return;
 		}
 
-		connect1f(paramsControllers[ic].getName(), paramsTargets[it].getName());
+		connect1f(paramsControllers[iCont].getName(), paramsTargets[iTar].getName());
 	}
 
 	//--------------------------------------------------------------
-	void unlink(int ic, int it) {
-		if (ic > paramsControllers.size() - 1 || it > paramsTargets.size() - 1)
+	void unlink(int iCont, int iTar) {
+		if (iCont > paramsControllers.size() - 1 || iTar > paramsTargets.size() - 1)
 		{
 			ofLogError(__FUNCTION__) << "Out of range index for controller or target";
 			return;
 		}
 
-		disconnect1f(paramsControllers[ic].getName(), paramsTargets[it].getName());
+		disconnect1f(paramsControllers[iCont].getName(), paramsTargets[iTar].getName());
 	}
 };

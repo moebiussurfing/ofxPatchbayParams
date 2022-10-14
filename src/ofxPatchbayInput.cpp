@@ -7,7 +7,6 @@
 #include "ofxPatchbayInput.h"
 #include "ofxPatchbay.h"
 
-// ofParameters
 void ofxPatchbayInput::registerParams(ofxPatchbay *patchbay)
 {
 
