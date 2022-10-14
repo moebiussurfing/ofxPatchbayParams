@@ -10,17 +10,31 @@
 // ofParameters
 void ofxPatchbayInput::registerParams(ofxPatchbay *patchbay)
 {
-	///*
-	for (int i = 0; i < parameters.getSize(); ++i) 
+
+	for (int i = 0; i < parameters.size(); ++i)
 	{
-		auto& p = parameters.parameters[i];
+		auto& p = parameters[i];
 		string name = p.getName();
-		
+
 		patchbay->registerController1f(name, [&, i]
 			{
-			return parameters.parameters[i].get();
+				return parameters[i].get();
 			});
 	}
+
+
+
+	///*
+	//for (int i = 0; i < parameters.getSize(); ++i) 
+	//{
+	//	auto& p = parameters.parameters[i];
+	//	string name = p.getName();
+	//	
+	//	patchbay->registerController1f(name, [&, i]
+	//		{
+	//		return parameters.parameters[i].get();
+	//		});
+	//}
 	//*/
 
 

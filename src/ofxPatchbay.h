@@ -8,8 +8,7 @@
 //	* removed all input controllers
 //	* adde new ofParameter>float> controller
 
-#ifndef ofxPatchbay_h
-#define ofxPatchbay_h
+#pragma once
 
 #include "ofMain.h"
 #include "ofxPatchbayInput.h"
@@ -130,5 +129,3 @@ public:
 		disconnect1f(paramsControllers[indexControlller].getName(), paramsTargets[indexTarget].getName());
 	}
 };
-
-#endif /* ofxPatchbay_h */

@@ -3,19 +3,10 @@
 //  mondrian
 //
 //  Created by Mayank Sanganeria on 2/29/20.
-//
-//  This is modified version by moebiusSurfing
-//	* removed all input controllers
-//	* adde new ofParameter>float> controller
 
-#ifndef ofxPatchbayInput_h
-#define ofxPatchbayInput_h
+#pragma once
 
-#include <iostream>
-
-#include "ofxParameter.h"
-
-using namespace std;
+#include "ofMain.h"
 
 class ofxPatchbay;
 
@@ -25,15 +16,13 @@ public:
 
 	void registerParams(ofxPatchbay* patchbay);
 
-	//void addParameter(ofAbstractParameter& param)
-	void addParameter(ofParameter<float>& param)
+	//void addParameter(ofAbstractParameter& p)
+	void addParameter(ofParameter<float>& p)
 	{
-		parameters.addParameter(param);
+		parameters.push_back(p);
 	}
 
-protected:
+//protected:
 
-	ofxParameterFloats parameters;
+	vector<ofParameter<float>> parameters;
 };
-
-#endif /* ofxPatchbayInput_h */
