@@ -11,12 +11,14 @@
 #include "ofxPatchbayInput.h"
 #include "ofxPatchbay.h"
 
+/*
 void ofxPatchbayInput::registerInputs(ofxPatchbay *patchbay, bool bparam) {
 
 	//if (bparam) {
 	//	registerParam(patchbay);
 	//}
 }
+*/
 
 // ofParameters
 void ofxPatchbayInput::registerParams(ofxPatchbay *patchbay) {

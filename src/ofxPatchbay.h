@@ -61,7 +61,7 @@ public:
 	}
 	//--------------------------------------------------------------
 	void clearParameters() {
-		input.unregisterParams(this);
+		//input.unregisterParams(this);
 	}
 
 protected:

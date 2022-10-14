@@ -22,11 +22,11 @@ class ofxPatchbay;
 class ofxPatchbayInput {
 
 public:
-    void registerInputs(ofxPatchbay *patchbay, bool bparam);
+    //void registerInputs(ofxPatchbay *patchbay, bool bparam);
 
 	// ofParams
     void registerParams(ofxPatchbay *patchbay);
-    void unregisterParams(ofxPatchbay *patchbay);
+    //void unregisterParams(ofxPatchbay *patchbay);
 
 	void addParameter(ofParameter<float>& param) {
 		parameters.addParameter(param);
