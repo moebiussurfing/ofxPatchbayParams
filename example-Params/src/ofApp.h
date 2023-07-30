@@ -20,12 +20,16 @@ public:
 	ofParameter<float>pController1{ "pController1", 0, 0, 1 };
 	ofParameter<float>pController2{ "pController2", 0, 0, 1 };
 	ofParameter<float>pController3{ "pController3", 0, 0, 1 };
+	ofParameter<int>pController4{ "pController4", 0, 0, 7 };
+	ofParameter<int>pController5{ "pController5", 0, 0, 7 };
 
 	// targets
 	ofParameter<float>pTarget0{ "pTarget0", 0, 0, 1 };
 	ofParameter<float>pTarget1{ "pTarget1", 0, 0, 1 };
 	ofParameter<float>pTarget2{ "pTarget2", 0, 0, 1 };
 	ofParameter<float>pTarget3{ "pTarget3", 0, 0, 1 };
+	ofParameter<int>pTarget4{ "pTarget4", 0, 0, 7 };
+	ofParameter<int>pTarget5{ "pTarget5", 0, 0, 7 };
 
 	// gui
 	ofxPanel guiControllers;

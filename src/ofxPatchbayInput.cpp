@@ -23,6 +23,16 @@ void ofxPatchbayInput::registerParams(ofxPatchbay* patchbay)
 				return parameters_Float[i].get();
 			});
 	}
+	for (int i = 0; i < parameters_Int.size(); ++i)
+	{
+		auto& p = parameters_Int[i];
+		string name = p.getName();
+
+		patchbay->registerController1i(name,
+			[&, i] {
+				return parameters_Int[i].get();
+			});
+	}
 
 	for (int i = 0; i < parameters_Bool.size(); ++i)
 	{

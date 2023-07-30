@@ -12,8 +12,11 @@
 
 	TODO
 
-	think on main vector to stroe different types.
+	think on main vector to store different types.
 	abstractParams? map like @daandelange nodes?
+
+	from ofApp patchbay/patcher
+	split Node system. merge with added params!
 
 */
 
@@ -40,11 +43,20 @@ public:
 	void connect1f(string controller, string controllable);
 	void disconnect1f(string controller, string controllable);
 
+	void connect1i(string controller, string controllable);
+	void disconnect1i(string controller, string controllable);
+
 	void disconnectAll();
 	void disconnectAll1f();
+	void disconnectAll1i();
 
 	void registerControllable1f(string, function<void(float)>);
 	void registerController1f(string, function<float()>);
+	//void registerController1f(string, function<int()>);
+
+	void registerControllable1i(string, function<void(int)>);
+	void registerController1i(string, function<int()>);
+	//void registerController1i(string, function<int()>);
 
 	void registerControllableB(string, function<void(bool)>);
 	void registerControllerB(string, function<bool()>);
@@ -54,6 +66,7 @@ public:
 	void print();
 	void printConnections();
 	void print1f();
+	void print1i();
 
 	//--
 
@@ -64,6 +77,12 @@ protected:
 	map<string, set<string>> connections1f;
 	map<string, function<void(float)>> controllable1f;
 	map<string, function<float()>> controller1f;
+	//map<string, function<int()>> controller1i;
+
+	map<string, set<string>> connections1i;
+	map<string, function<void(int)>> controllable1i;
+	map<string, function<int()>> controller1i;
+	//map<string, function<int()>> controller1i;
 
 	map<string, set<string>> connectionsB;
 	map<string, function<void(bool)>> controllableB;
@@ -83,6 +102,9 @@ protected:
 	vector<ofParameter<float>> paramsControllers_Float;
 	vector<ofParameter<float>> paramsTargets_Float;
 
+	vector<ofParameter<int>> paramsControllers_Int;
+	vector<ofParameter<int>> paramsTargets_Int;
+
 	vector<ofParameter<bool>> paramsControllers_Bool;
 	vector<ofParameter<bool>> paramsTargets_Bool;
 
@@ -90,6 +112,11 @@ public:
 
 	//--------------------------------------------------------------
 	void addParameter(ofParameter<float>& param) {
+		input.addParameter(param);
+	}
+
+	//--------------------------------------------------------------
+	void addParameter(ofParameter<int>& param) {
 		input.addParameter(param);
 	}
 	//--------------------------------------------------------------
@@ -101,6 +128,13 @@ public:
 	void addController(ofParameter<float>& p)
 	{
 		paramsControllers_Float.push_back(p);
+		addParameter(p);
+	}
+
+	//--------------------------------------------------------------
+	void addController(ofParameter<int>& p)
+	{
+		paramsControllers_Int.push_back(p);
 		addParameter(p);
 	}
 	//--------------------------------------------------------------
@@ -117,6 +151,16 @@ public:
 
 		// define and name outputs
 		registerControllable1f(p.getName(), [&](float value) {
+			p.set(value);
+			});
+	}
+	//--------------------------------------------------------------
+	void addTarget(ofParameter<int>& p)
+	{
+		paramsTargets_Int.push_back(p);
+
+		// define and name outputs
+		registerControllable1i(p.getName(), [&](int value) {
 			p.set(value);
 			});
 	}
@@ -186,7 +230,6 @@ public:
 
 		connect1f(paramsControllers_Float[iCont].getName(), paramsTargets_Float[iTar].getName());
 	}
-
 	//--------------------------------------------------------------
 	void unlink(int iCont, int iTar) {
 		if (iCont > paramsControllers_Float.size() - 1 || iTar > paramsTargets_Float.size() - 1)
@@ -196,5 +239,26 @@ public:
 		}
 
 		disconnect1f(paramsControllers_Float[iCont].getName(), paramsTargets_Float[iTar].getName());
+	}
+
+	//--------------------------------------------------------------
+	void linkInt(int iCont, int iTar) {
+		if (iCont > paramsControllers_Int.size() - 1 || iTar > paramsTargets_Int.size() - 1)
+		{
+			ofLogError(__FUNCTION__) << "Out of range index for controller or target";
+			return;
+		}
+
+		connect1i(paramsControllers_Int[iCont].getName(), paramsTargets_Int[iTar].getName());
+	}
+	//--------------------------------------------------------------
+	void unlinkInt(int iCont, int iTar) {
+		if (iCont > paramsControllers_Int.size() - 1 || iTar > paramsTargets_Int.size() - 1)
+		{
+			ofLogError(__FUNCTION__) << "Out of range index for controller or target";
+			return;
+		}
+
+		disconnect1i(paramsControllers_Int[iCont].getName(), paramsTargets_Int[iTar].getName());
 	}
 };
